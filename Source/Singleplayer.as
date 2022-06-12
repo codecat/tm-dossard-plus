@@ -9,8 +9,22 @@ void SingleplayerUpdate()
             auto scriptPlayer = GetScriptPlayer();
             if(isSinglePlayer && scriptPlayer != null) 
             {
-                scriptPlayer.Dossard_Trigram = Singleplayer_trigramText;
-                scriptPlayer.Dossard_Number = Singleplayer_dossardText;
+                if(Singleplayer_dossardInvisible) 
+                {
+                    scriptPlayer.Dossard_Number = " ";
+                } else 
+                {
+                    scriptPlayer.Dossard_Number = Singleplayer_dossardText;
+                }
+
+                if(Singleplayer_trigramInvisible) 
+                {
+                    scriptPlayer.Dossard_Trigram = " ";
+                } else 
+                {
+                    scriptPlayer.Dossard_Trigram = Singleplayer_trigramText;
+                }
+
                 scriptPlayer.Dossard_Color = Singleplayer_dossardColor;
             }
         }

@@ -9,7 +9,13 @@ void MultiplayerUpdate()
             auto playerInfo = GetPlayerInfo();
             if(client != null && isMultiplayer && playerInfo != null) 
             {   
-                SetPlayerInfoTrigram(playerInfo, Multiplayer_trigramText);
+                if(Multiplayer_trigramInvisible) 
+                {
+                    SetPlayerInfoTrigram(playerInfo, " ");
+                } else {
+                    SetPlayerInfoTrigram(playerInfo, Multiplayer_trigramText);
+                }
+                
             }
         }
         sleep(100);

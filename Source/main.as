@@ -1,5 +1,5 @@
 void Main()
 {
-    startnew(MultiplayerCoroutine);
-    startnew(SingleplayerCoroutine);
+    startnew(MultiplayerUpdate);
+    startnew(SingleplayerUpdate);
 }

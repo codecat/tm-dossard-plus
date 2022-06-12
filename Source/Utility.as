@@ -1,11 +1,11 @@
-bool isMultiplayer(CNetClient@ client) 
+bool IsMultiplayer(CNetClient@ client) 
 {
     return client.NbrConnections > 0;
 }
 
-CNetClient@ getClient() 
+CNetClient@ GetClient() 
 {
-    auto network = getNetwork();
+    auto network = GetNetwork();
 
     if(network is null || network.Client is null)
         return null;
@@ -13,7 +13,7 @@ CNetClient@ getClient()
     return client;
 }
 
-CTrackManiaNetwork@ getNetwork() 
+CTrackManiaNetwork@ GetNetwork() 
 {
     auto app = cast<CTrackMania>(GetApp());
     auto network = cast<CTrackManiaNetwork>(app.Network);
@@ -24,9 +24,9 @@ CTrackManiaNetwork@ getNetwork()
     return network;
 }
 
-CGamePlayerInfo@ getPlayerInfo() 
+CGamePlayerInfo@ GetPlayerInfo() 
 {
-    auto network = getNetwork();
+    auto network = GetNetwork();
 
     if(network is null || network.PlayerInfo is null)
         return null;
@@ -35,7 +35,7 @@ CGamePlayerInfo@ getPlayerInfo()
     return PlayerInfo;
 }
 
-CSmScriptPlayer@ getScriptPlayer() 
+CSmScriptPlayer@ GetScriptPlayer() 
 {
     auto app = cast<CTrackMania>(GetApp());
     auto currentPlayground = cast<CSmArenaClient>(app.CurrentPlayground);
@@ -44,7 +44,18 @@ CSmScriptPlayer@ getScriptPlayer()
         return null;
     
     auto csmPlayer = cast<CSmPlayer>(currentPlayground.Players[0]);
-    auto player = cast<CSmScriptPlayer>(csmPlayer.ScriptAPI);
+    auto scriptPlayer = cast<CSmScriptPlayer>(csmPlayer.ScriptAPI);
     
-    return player;
+    return scriptPlayer;
+}
+
+void SetPlayerInfoTrigram(CGamePlayerInfo@ info, const string &in text) 
+{
+    auto type = Reflection::GetType("CGamePlayerInfo");
+    if (type is null) {
+        error("Unable to find reflection info for CGamePlayerInfo!");
+    }
+
+    auto offset = type.GetMember("Trigram").Offset;
+    Dev::SetOffset(info, offset, text);
 }

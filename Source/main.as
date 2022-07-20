@@ -1,5 +1,3 @@
-void Main()
-{
-    startnew(MultiplayerUpdate);
-    startnew(SingleplayerUpdate);
+void Main() {
+
 }

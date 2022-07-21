@@ -13,7 +13,7 @@ CSmScriptPlayer@ GetScriptPlayer()
 }
 
 bool IsClientPlayer(uint64 ptr) {
-    return G_clientPlayerDossard == Dev::ReadString(ptr + Constants::DOSSARD_OFFSET, 5);
+    return g_clientPlayerDossard == Dev::ReadString(ptr + Constants::DOSSARD_OFFSET, 5);
 }
 
 string GetUserTrigram() 

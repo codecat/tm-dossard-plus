@@ -1,15 +1,15 @@
-string G_clientPlayerDossard = "";
-DossardVis@ G_clientDossard;
+string g_clientPlayerDossard = "";
+DossardVis@ g_clientDossard;
 
 void Main() {
-    @G_clientDossard = DossardVis();
-    G_clientDossard.UpdateSettings();
+    @g_clientDossard = DossardVis();
+    g_clientDossard.UpdateSettings();
     SetupHook();
     startnew(PlayerLoop);
 }
 
 void OnSettingsChanged() {
-    G_clientDossard.UpdateSettings();
+    g_clientDossard.UpdateSettings();
 }
 
 void UpdateDossard(uint64 rdx) {
@@ -20,9 +20,9 @@ void UpdateDossard(uint64 rdx) {
         return;
     }
 
-    G_clientDossard.UpdateTrigram(rdx);
-    G_clientDossard.UpdateNumber(rdx);
-    G_clientDossard.UpdateColor(rdx);
+    g_clientDossard.UpdateTrigram(rdx);
+    g_clientDossard.UpdateNumber(rdx);
+    g_clientDossard.UpdateColor(rdx);
 }
 
 void PlayerLoop() {
@@ -30,7 +30,7 @@ void PlayerLoop() {
         auto scriptPlayer = GetScriptPlayer();
         
         if(scriptPlayer !is null) {
-            G_clientPlayerDossard = scriptPlayer.Dossard_Number + GetUserTrigram();
+            g_clientPlayerDossard = scriptPlayer.Dossard_Number + GetUserTrigram();
         }
 
         sleep(3);

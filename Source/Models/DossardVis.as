@@ -10,9 +10,7 @@ class DossardVis {
     }
 
     void UpdateSettings() {
-        trigramVis.isHidden = Setting_triHidden;
-        trigramVis.text = Setting_triText;
-        numberVis.isHidden = Setting_numHidden;
+        trigramVis.text = Setting_triText;        
         numberVis.text = Setting_numText;
         colorVis.color = Setting_color;
     }
@@ -48,7 +46,7 @@ class DossardVis {
         
         auto offsetAddr = rdx + Constants::COLOR_OFFSET;
         auto color = colorVis.color;
-        
+
         Dev::Write(offsetAddr, uint8(color.x));
         Dev::Write(offsetAddr+0x1, uint8(color.y));
         Dev::Write(offsetAddr+0x2, uint8(color.z));

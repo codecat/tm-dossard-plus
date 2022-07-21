@@ -3,12 +3,16 @@ CSmScriptPlayer@ GetScriptPlayer()
     auto app = cast<CTrackMania>(GetApp());
     auto currentPlayground = cast<CSmArenaClient>(app.CurrentPlayground);
 
-    if(app is null || currentPlayground is null || currentPlayground.Players.Length == 0)
-        return null;
-    
+    if(app is null || currentPlayground is null || currentPlayground.GameTerminals.Length <= 0)
+        return null;  
+
     auto csmPlayer = cast<CSmPlayer>(currentPlayground.GameTerminals[0].ControlledPlayer);
-    auto scriptPlayer = cast<CSmScriptPlayer>(csmPlayer.ScriptAPI);
     
+    if(csmPlayer is null) {
+        return null;
+    }
+    
+    auto scriptPlayer = cast<CSmScriptPlayer>(csmPlayer.ScriptAPI);
     return scriptPlayer;
 }
 

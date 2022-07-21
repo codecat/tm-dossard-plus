@@ -11,10 +11,11 @@ class TextVis {
 
     string GetText() {
         if(isHidden) {
-           return Utilities::RightPad(" ", length);
+           return RightPad(" ", length);
         }
+
         if(text.Length < length) {
-            return Utilities::RightPad(text, length - text.Length);
+            return RightPad(text, length - text.Length);
         }
         if(text.Length > length) {
             return text.SubStr(0, length);

@@ -42,14 +42,16 @@ class DossardVis {
     }
 
     void UpdateColor(uint64 rdx) {
-        if(Setting_colorOverride) {
-            auto offsetAddr = rdx + Constants::COLOR_OFFSET;
-            auto color = colorVis.color;
-            Dev::Write(offsetAddr, uint8(color.x));
-            Dev::Write(offsetAddr+0x1, uint8(color.y));
-            Dev::Write(offsetAddr+0x2, uint8(color.z));
+        if(!Setting_colorOverride) {
             return;
         }
+        
+        auto offsetAddr = rdx + Constants::COLOR_OFFSET;
+        auto color = colorVis.color;
+        
+        Dev::Write(offsetAddr, uint8(color.x));
+        Dev::Write(offsetAddr+0x1, uint8(color.y));
+        Dev::Write(offsetAddr+0x2, uint8(color.z));
     }
 
 }

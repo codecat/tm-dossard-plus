@@ -1,7 +1,7 @@
 [Setting category="General" name="IsEnabled"]
 bool Setting_isEnabled = true;
 
-[Setting color category="General" name="Override color"]
+[Setting category="General" name="Override color"]
 bool Setting_colorOverride = false;
 
 [Setting color category="General" name="Color"]

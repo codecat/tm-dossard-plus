@@ -12,18 +12,6 @@ CSmScriptPlayer@ GetScriptPlayer()
     return scriptPlayer;
 }
 
-void PlayerLoop() {
-    while(true) {
-        auto scriptPlayer = GetScriptPlayer();
-        
-        if(scriptPlayer !is null) {
-            G_clientPlayerDossard = scriptPlayer.Dossard_Number + GetUserTrigram();
-        }
-
-        sleep(3);
-    }
-}
-
 bool IsClientPlayer(uint64 ptr) {
     return G_clientPlayerDossard == Dev::ReadString(ptr + Constants::DOSSARD_OFFSET, 5);
 }
@@ -40,4 +28,16 @@ string GetUserTrigram()
 
 bool isHideInterface() {
     return Setting_hideInterface && !UI::IsGameUIVisible();
+}
+
+string RightPad(const string&in text, int length) {
+    string padding = "";
+    for(int i = 0; i < length; i++) {
+        padding += " ";
+    }
+    return text + padding;
+}
+
+float ToRGBFloat(const float &in value) {
+    return value * 255.0;
 }

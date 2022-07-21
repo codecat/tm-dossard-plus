@@ -24,7 +24,7 @@ void PlayerLoop() {
     }
 }
 
-bool isClientPlayer(uint64 ptr) {
+bool IsClientPlayer(uint64 ptr) {
     return G_clientPlayerDossard == Dev::ReadString(ptr + Constants::DOSSARD_OFFSET, 5);
 }
 
@@ -36,4 +36,8 @@ string GetUserTrigram()
 
     if(user is null) return "";
     return user.Config.User_Trigram;
+}
+
+bool isHideInterface() {
+    return Setting_hideInterface && !UI::IsGameUIVisible();
 }

@@ -1,15 +1,3 @@
-string RightPadStr(const string&in value, int length) {
-    string padding = "";
-    for(int i = 0; i < length; i++) {
-        padding += " ";
-    }
-    return value + padding;
-}
-
-float ToRGBFloat(const float &in value) {
-    return value * 255.0;
-}
-
 CSmScriptPlayer@ GetScriptPlayer() 
 {
     auto app = cast<CTrackMania>(GetApp());

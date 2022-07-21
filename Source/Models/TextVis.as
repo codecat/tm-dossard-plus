@@ -13,9 +13,8 @@ class TextVis {
         if(isHidden) {
            return Utilities::RightPad(" ", length);
         }
-
         if(text.Length < length) {
-            return text + Utilities::RightPad(text, length - text.Length);
+            return Utilities::RightPad(text, length - text.Length);
         }
         if(text.Length > length) {
             return text.SubStr(0, length);

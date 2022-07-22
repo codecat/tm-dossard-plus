@@ -1,41 +1,46 @@
-string g_clientPlayerDossard = "";
-DossardVis@ g_clientDossard;
+DossardVis@ g_playerDossard;
+string g_localDossardText; 
+
 
 void Main() {
-    @g_clientDossard = DossardVis();
-    g_clientDossard.UpdateSettings();
+    SetupDossard();
     SetupHook();
-    startnew(PlayerLoop);
+    startnew(PlayerDossardValidation);
+}
+
+void SetupDossard() {
+    @g_playerDossard = DossardVis();
+    g_playerDossard.UpdateSettings();
 }
 
 void OnSettingsChanged() {
-    g_clientDossard.UpdateSettings();
+    g_playerDossard.UpdateSettings();
 }
 
 void UpdateDossard(uint64 rdx) {
-    if(!Setting_isEnabled || IsInMenu() || !HasActivePlayground()) return;
+    if(!Setting_isEnabled || IsNotPlaying()) return;
     
-    if(!IsClientPlayer(rdx)) {
-        UpdateOpponents(rdx);
+    bool isOpponentDossard = !IsPlayerDossard(rdx);
+    
+    if(isOpponentDossard) {
+        UpdateOpponent(rdx);
         return;
     }
-
-    g_clientDossard.UpdateTrigram(rdx);
-    g_clientDossard.UpdateNumber(rdx);
-    g_clientDossard.UpdateColor(rdx);
+    
+    g_playerDossard.Update(rdx);
 }
 
-void PlayerLoop() {
+void PlayerDossardValidation() {
     while(true) {
         auto scriptPlayer = GetScriptPlayer();
         
-        if(scriptPlayer !is null) {
-
-            g_clientPlayerDossard = IsSinglePlayer() 
-                                    ? GetUserTrigram()
-                                    : scriptPlayer.Dossard_Number + GetUserTrigram();
+        if(scriptPlayer is null) {
+            yield();
         }
 
+        g_localDossardText = IsSinglePlayer() 
+                                ? GetUserTrigram()
+                                : scriptPlayer.Dossard_Number + GetUserTrigram();
         sleep(3);
     }
 }

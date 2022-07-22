@@ -1,19 +1,40 @@
 class TextVis {
     string text;
-    int length;
+    private int m_length;
+    bool hide;
+    bool override;
 
     TextVis(int length) {
         text = "";
-        this.length = length;
+        this.m_length = length;
+    }
+
+    void UpdateValues(string text, bool hide, bool overrideText) {
+        this.text = text;
+        this.hide = hide;
+        this.override = overrideText;
     }
 
     string GetText() {
-        if(text.Length < length) {
-            return RightPad(text, length - text.Length);
+        if(text.Length < m_length) {
+            return RightPad(text, m_length - text.Length);
         }
-        if(text.Length > length) {
-            return text.SubStr(0, length);
+        if(text.Length > m_length) {
+            return text.SubStr(0, m_length);
         }
         return text;
+    }
+
+    void Update(uint64 textPtr) {
+        bool hideText = this.hide || Setting_hideInterface && !UI::IsGameUIVisible();
+        if(hideText) {
+            Dev::WriteString(textPtr, RightPad("", m_length));
+            return;
+        }
+
+        if(this.override) {
+            Dev::WriteString(textPtr, GetText());
+            return;
+        }
     }
 }

@@ -29,7 +29,7 @@ string Setting_numText = "DE";
 bool Setting_numHidden = false;
 
 [Setting category="Opponents" name="Hide text"]
-bool Opponents_hide = false;
+bool Setting_hideOpponents = false;
 
 [Setting category="Opponents" name="Hide text if interface is hidden"]
-bool Opponents_hideInterface = false;
+bool Setting_hideOpponentsOnInterface = false;

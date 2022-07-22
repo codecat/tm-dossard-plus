@@ -1,5 +1,9 @@
-void UpdateOpponents(uint64 ptr) {
-    if(Opponents_hide || Opponents_hideInterface && !UI::IsGameUIVisible()) {
-        Dev::WriteString(ptr + Constants::DOSSARD_OFFSET, "     ");
+void UpdateOpponent(uint64 rdx) {
+    bool hideOpponentInterface = Setting_hideOpponentsOnInterface && !UI::IsGameUIVisible();
+    bool hideOpponentText = Setting_hideOpponents || hideOpponentInterface;
+    
+    if(hideOpponentText) {
+        Dev::WriteString(rdx + Constants::DOSSARD_OFFSET, "     ");
     }
+    return;
 }

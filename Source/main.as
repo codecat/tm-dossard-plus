@@ -30,7 +30,10 @@ void PlayerLoop() {
         auto scriptPlayer = GetScriptPlayer();
         
         if(scriptPlayer !is null) {
-            g_clientPlayerDossard = scriptPlayer.Dossard_Number + GetUserTrigram();
+
+            g_clientPlayerDossard = IsSinglePlayer() 
+                                    ? GetUserTrigram()
+                                    : scriptPlayer.Dossard_Number + GetUserTrigram();
         }
 
         sleep(3);

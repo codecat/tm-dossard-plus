@@ -17,7 +17,10 @@ CSmScriptPlayer@ GetScriptPlayer()
 }
 
 bool IsClientPlayer(uint64 ptr) {
-    return g_clientPlayerDossard == Dev::ReadString(ptr + Constants::DOSSARD_OFFSET, 5);
+    string playerDossard = IsSinglePlayer() 
+                            ? Dev::ReadString(ptr + Constants::TRIGRAM_OFFSET, 3) 
+                            : Dev::ReadString(ptr + Constants::DOSSARD_OFFSET, 5);
+    return g_clientPlayerDossard == playerDossard;
 }
 
 string GetUserTrigram() 
@@ -44,4 +47,9 @@ string RightPad(const string&in text, int length) {
 
 float ToRGBFloat(const float &in value) {
     return value * 255.0;
+}
+
+bool IsSinglePlayer() {
+    auto network = cast<CTrackManiaNetwork>(GetApp().Network);
+    return !network.IsMultiInternet;
 }

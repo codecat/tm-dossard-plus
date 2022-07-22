@@ -28,7 +28,7 @@ class TextVis {
     void Update(uint64 textPtr) {
         bool hideText = this.hide || Setting_hideInterface && !UI::IsGameUIVisible();
         if(hideText) {
-            Dev::WriteString(textPtr, RightPad("", m_length));
+            Dev::WriteString(textPtr, EmptyStr(m_length));
             return;
         }
 

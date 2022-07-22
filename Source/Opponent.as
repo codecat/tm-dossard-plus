@@ -3,7 +3,7 @@ void UpdateOpponent(uint64 rdx) {
     bool hideOpponentText = Setting_hideOpponents || hideOpponentInterface;
     
     if(hideOpponentText) {
-        Dev::WriteString(rdx + Constants::DOSSARD_OFFSET, "     ");
+        Dev::WriteString(rdx + Constants::DOSSARD_OFFSET, EmptyStr(5));
     }
     return;
 }

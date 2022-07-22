@@ -5,3 +5,7 @@ string RightPad(const string&in text, int length) {
     }
     return text + padding;
 }
+
+string EmptyStr(int length) {
+    return RightPad("", length);
+}

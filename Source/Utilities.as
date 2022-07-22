@@ -53,3 +53,11 @@ bool IsSinglePlayer() {
     auto network = cast<CTrackManiaNetwork>(GetApp().Network);
     return !network.IsMultiInternet;
 }
+
+bool IsInMenu() {
+    return GetApp().ActiveMenus.Length > 0;
+}
+
+bool HasActivePlayground() {
+    return GetApp().CurrentPlayground !is null;
+}

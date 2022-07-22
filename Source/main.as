@@ -13,7 +13,7 @@ void OnSettingsChanged() {
 }
 
 void UpdateDossard(uint64 rdx) {
-    if(!Setting_isEnabled) return;
+    if(!Setting_isEnabled || IsInMenu() || !HasActivePlayground()) return;
     
     if(!IsClientPlayer(rdx)) {
         UpdateOpponents(rdx);

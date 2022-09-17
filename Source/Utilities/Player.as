@@ -21,6 +21,13 @@ bool IsPlayerDossard(uint64 ptr) {
     return g_localDossardText == playerDossard;
 }
 
+string GetTrigramFromMenuManager() {
+    auto app = cast<CTrackMania>(GetApp());
+    auto menuManager = cast<CTrackManiaMenus>(app.MenuManager);
+    auto localUser = cast<CTrackManiaPlayerInfo>(menuManager.MenuCustom_CurrentManiaApp.LocalUser);
+    return localUser.Trigram;
+}
+
 string GetUserTrigram() 
 {
     auto app = cast<CTrackMania>(GetApp());
@@ -28,5 +35,11 @@ string GetUserTrigram()
     auto user = userManagerScript.Users[0];
 
     if(user is null) return "";
-    return user.Config.User_Trigram;
+    auto trigram = user.Config.User_Trigram;
+    
+    if (trigram == "") {
+        trigram = GetTrigramFromMenuManager();
+    }
+    
+    return trigram;
 }

@@ -23,7 +23,7 @@ void UpdateDossard(uint64 rdx) {
     bool isOpponentDossard = !IsPlayerDossard(rdx);
     
     if(isOpponentDossard) {
-        UpdateOpponent(rdx);
+        UpdateOpponent(rdx); // rdx = CSceneVehicleVisState
         return;
     }
     

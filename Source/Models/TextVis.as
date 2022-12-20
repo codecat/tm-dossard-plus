@@ -9,7 +9,7 @@ class TextVis {
         this.m_length = length;
     }
 
-    void UpdateValues(string text, bool hide, bool overrideText) {
+    void UpdateValues(const string &in text, bool hide, bool overrideText) {
         this.text = text;
         this.hide = hide;
         this.override = overrideText;

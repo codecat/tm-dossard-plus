@@ -28,12 +28,12 @@ class TextVis {
     void Update(uint64 textPtr) {
         bool hideText = this.hide || Setting_hideInterface && !UI::IsGameUIVisible();
         if(hideText) {
-            Dev::WriteString(textPtr, EmptyStr(m_length));
+            Dev::WriteCString(textPtr, EmptyStr(m_length));
             return;
         }
 
         if(this.override) {
-            Dev::WriteString(textPtr, GetText());
+            Dev::WriteCString(textPtr, GetText());
             return;
         }
     }

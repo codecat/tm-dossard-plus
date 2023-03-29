@@ -16,8 +16,8 @@ CSmScriptPlayer@ GetScriptPlayer()
 
 bool IsPlayerDossard(uint64 ptr) {
     string playerDossard = IsSinglePlayer() 
-                            ? Dev::ReadString(ptr + Constants::TRIGRAM_OFFSET, 3) 
-                            : Dev::ReadString(ptr + Constants::DOSSARD_OFFSET, 5);
+                            ? Dev::ReadCString(ptr + Constants::TRIGRAM_OFFSET, 3) 
+                            : Dev::ReadCString(ptr + Constants::DOSSARD_OFFSET, 5);
     return g_localDossardText == playerDossard;
 }
 
